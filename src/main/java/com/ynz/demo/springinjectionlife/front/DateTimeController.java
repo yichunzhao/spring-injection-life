@@ -3,7 +3,6 @@ package com.ynz.demo.springinjectionlife.front;
 import com.ynz.demo.springinjectionlife.domain.SecurityUser;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
@@ -11,8 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.security.Principal;
 import java.time.OffsetDateTime;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +28,7 @@ public class DateTimeController {
 
     @GetMapping(value = "dateTime")
     public String getCurrentDateTime(Authentication authentication) {
-        SecurityUser user = (SecurityUser)authentication.getPrincipal();
+        SecurityUser user = (SecurityUser) authentication.getPrincipal();
         List<String> authorities = user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(toList());
 
         log.info("getCurrentDateTime; current user: {} has authorities {} ", user.getUsername(), authorities);
@@ -37,7 +36,8 @@ public class DateTimeController {
     }
 
     @GetMapping("controller")
-    public Map<String, String> getCurrentApplicationContextInfo() {
+    public Map<String, String> getCurrentApplicationContextInfo(Principal principal) {
+        log.info("getCurrentDateTime; current user: {} ", principal.getName());
         DateTimeController controller = applicationContext.getBean(DateTimeController.class);
 
         Map<String, String> map = new HashMap<>();

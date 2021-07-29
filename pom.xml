@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ynz.demo</groupId>
-	<artifactId>spring-injection-life</artifactId>
+	<artifactId>spring-security-database</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>spring-injection-life</name>
-	<description>life cycle of different injection modes</description>
+	<name>spring-security-database</name>
+	<description>Spring Security via DaoAuthenticationProvider</description>
 	<properties>
 		<java.version>11</java.version>
 	</properties>
